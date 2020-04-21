@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DatabaseBootcampMVC.Models;
+using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace DatabaseBootcampMVC.Controllers
 {
@@ -20,6 +23,22 @@ namespace DatabaseBootcampMVC.Controllers
 
         public IActionResult Index()
         {
+            string connStr = "server=db-workshop.public-dev.zuto.cloud;user=bootcamp7;database=bootcamp7;port=3306;password=RubChicken";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                // Perform database operations
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+            Console.WriteLine("Done.");
+            Debug.WriteLine("SUCCESS");
+
             return View();
         }
 
